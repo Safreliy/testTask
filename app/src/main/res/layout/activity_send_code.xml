@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.SendCodeActivity">
+
+    <LinearLayout
+        android:layout_width="409dp"
+        android:layout_height="545dp"
+        android:layout_marginTop="56dp"
+        android:orientation="vertical"
+        android:padding="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/sent_code"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:text="@string/sent_code_desc" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/enter_code" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom|top"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/editCode"
+                android:maxLength="6"
+                android:layout_width="0dp"
+                android:layout_height="54dp"
+                android:layout_weight="01"
+                android:background="@drawable/rounded_shape_border"
+                android:ems="10"
+                android:hint="@string/default_code"
+                android:inputType="phone"
+                android:paddingLeft="12dp"
+                android:textColorHint="@color/grey"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/timer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/resend_code"
+            android:textColor="@color/grey"
+            android:textSize="14sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/resendBtn"
+            style="@style/buttonWhite"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:padding="16dp"
+            android:text="@string/resend"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="onResendBtnClick"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/continueBtn"
+            android:onClick="onContinueBtnClick"
+            style="@style/buttonGrey"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="24dp"
+            android:padding="16dp"
+            android:text="@string/continue_"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/policy"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

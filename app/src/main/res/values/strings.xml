@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">testTask</string>
+    <string name="lets_meet">Давай знакомиться!</string>
+    <string name="about_you">Чтобы воспользоваться всеми функциями приложения расскажи о себе</string>
+    <string name="enter_phone">Введите свой номер телефона</string>
+    <string name="phone_number">Номер телефона</string>
+    <string name="continue_">Продолжить</string>
+    <string name="skip">Пропустить</string>
+    <string name="policy">При подтверждении регистрации путём ввода кода из SMS вы принимаете <a href="https://gurmanika.ru/agreement">условия пользовательского соглашения</a> и <a href="https://gurmanika.ru/offer">политику обработки персональных данных</a></string>
+    <string name="code_number">+7</string>
+
+    <string name="sent_code">Отправили вам код</string>
+    <string name="sent_code_desc">Мы уже отправили Вам смс с кодом</string>
+    <string name="enter_code">Введите код из смс</string>
+    <string name="default_code">000000</string>
+    <string name="resend_code">Выслать код повторно можно будет через 60 секунд</string>
+    <string name="resend_code_allow">Можно выслать код повторно</string>
+    <string name="resend">Выслать повторно</string>
+</resources>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="buttonGrey" parent="@android:style/Widget.Button">
+        <item name="android:background">@drawable/rounded_shape</item>
+        <item name="android:backgroundTint">@color/greyBtn</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+</resources>
