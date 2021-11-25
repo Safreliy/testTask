@@ -84,7 +84,7 @@
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/continueBtn"
+            android:id="@+id/toCardBtn"
             android:onClick="onConfirmBtnClick"
             style="@style/buttonGrey"
             android:layout_width="fill_parent"

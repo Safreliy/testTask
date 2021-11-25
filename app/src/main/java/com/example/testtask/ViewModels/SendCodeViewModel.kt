@@ -16,7 +16,6 @@ import retrofit2.Response
 
 class SendCodeViewModel: ViewModel() {
     private var phoneNumber: String = VMGeneralData.phoneNumber
-    private val apiServiceDEV: ApiInterface = ApiInterface.create(VMGeneralData.DEV_URL)
     private val apiServicePROD: ApiInterface = ApiInterface.create(VMGeneralData.PROD_URL)
     var tickCounter: MutableLiveData<Long> = MutableLiveData(60)
     var timerFinished: MutableLiveData<Boolean> = MutableLiveData(false)

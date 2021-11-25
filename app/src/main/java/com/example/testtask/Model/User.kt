@@ -79,9 +79,3 @@ data class Transaction(
     @Expose
     @SerializedName("transactionId") var transactionId: String?
 )
-data class Wrapper<T>(
-    @Expose
-    @SerializedName("data") var data:T,
-    @Expose
-    @SerializedName("success") var success:Boolean?
-)

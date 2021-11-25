@@ -8,6 +8,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="grey">#B1AFB8</color>
     <color name="greyBtn">#B1AFB8</color>
+    <color name="defaultNavItem">#999DA3</color>
     <color name="black">#272729</color>
     <color name="white">#FFFFFFFF</color>
 </resources>

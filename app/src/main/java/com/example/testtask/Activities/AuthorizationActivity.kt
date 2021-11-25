@@ -37,7 +37,7 @@ class AuthorizationActivity : AppCompatActivity() {
         )
         formatWatcher.installOn(phoneNumberView)
 
-        var confirmButton: Button = findViewById(R.id.continueBtn)
+        var confirmButton: Button = findViewById(R.id.toCardBtn)
 
         phoneNumberView.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {

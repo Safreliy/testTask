@@ -16,4 +16,11 @@
     <string name="resend_code">Выслать код повторно можно будет через 60 секунд</string>
     <string name="resend_code_allow">Можно выслать код повторно</string>
     <string name="resend">Выслать повторно</string>
+
+    <string name="to_card">В корзину</string>
+
+    <string name="menu">Меню</string>
+    <string name="card">Корзина</string>
+    <string name="orders">Заказы</string>
+    <string name="profile">Профиль</string>
 </resources>

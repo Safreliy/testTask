@@ -10,5 +10,6 @@ class MainMenuActivity : AppCompatActivity() {
         supportActionBar?.hide()
         setContentView(R.layout.main_menu)
 
+
     }
 }

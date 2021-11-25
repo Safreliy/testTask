@@ -26,7 +26,7 @@ class SendCodeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_send_code)
 
         val codeView = findViewById<EditText>(R.id.editCode)
-        val continueButton : Button = findViewById(R.id.continueBtn)
+        val continueButton : Button = findViewById(R.id.toCardBtn)
         resendCodeButton = findViewById(R.id.resendBtn)
         resendCodeButton.visibility = View.GONE
         timerView = findViewById(R.id.timer)
