@@ -16,8 +16,8 @@ import com.example.testtask.Model.Position
 import java.net.URL
 
 
-class CustomRecyclerAdapter(private val dishes: Array<Position>, private val categories: Array<String>) ://как-то с категориями разобраться
-    RecyclerView.Adapter<CustomRecyclerAdapter.ViewHolder>() {
+class PositionsRecyclerAdapter(private val dishes: Array<Position?>?, private val categories: Array<String>?) ://как-то с категориями разобраться
+    RecyclerView.Adapter<PositionsRecyclerAdapter.ViewHolder>() {
 
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -39,24 +39,24 @@ class CustomRecyclerAdapter(private val dishes: Array<Position>, private val cat
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        if(dishes[position].dishId == 0){
+        if(dishes?.get(position)?.dishId == 0){
             viewHolder.categoryName.visibility = View.VISIBLE;
-            viewHolder.categoryName.text = categories[dishes[position].category ?: 0];
+            viewHolder.categoryName.text = categories?.get(dishes?.get(position)?.category ?: 0)
         }
         else{
             viewHolder.categoryName.visibility = View.GONE;
         }
-        val urlImg = URL(dishes[position].image)
+        val urlImg = URL(dishes?.get(position)?.image)
         val bmpImg = BitmapFactory.decodeStream(urlImg.openConnection().getInputStream())
         viewHolder.image.setImageBitmap(bmpImg)
 
-        val urlBckg = URL(dishes[position].image)
+        val urlBckg = URL(dishes?.get(position)?.image)
         val bmpBckg = BitmapFactory.decodeStream(urlBckg.openConnection().getInputStream())
         viewHolder.image.setImageBitmap(bmpBckg)
 
-        viewHolder.dishName.text = dishes[position].name
-        viewHolder.cost.text = dishes[position].cost.toString()
+        viewHolder.dishName.text = dishes?.get(position)?.name
+        viewHolder.cost.text = dishes?.get(position)?.cost.toString()
     }
 
-    override fun getItemCount() = dishes.size
+    override fun getItemCount() = dishes?.size ?: 0
 }

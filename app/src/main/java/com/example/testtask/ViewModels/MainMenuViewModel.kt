@@ -1,7 +1,9 @@
 package com.example.testtask.ViewModels
 
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.testtask.Adapters.PositionsRecyclerAdapter
 import com.example.testtask.Interfaces.ApiInterface
 import com.example.testtask.Model.*
 import retrofit2.Call
@@ -11,9 +13,10 @@ class MainMenuViewModel: ViewModel()  {
     private val apiServicePROD: ApiInterface = ApiInterface.create(VMGeneralData.PROD_URL)
     private var categories: List<DishData>? = null
     private var categoryNames: Array<String>? = null
-    private var positionArr: Array<Position?>? = null
-    private var groupData: Array<Int>? = null
-    fun getDishes(){
+    var positionArr: Array<Position?>? = null
+    var gotData: MutableLiveData<Boolean> = MutableLiveData(false)
+
+    fun getDishes() : PositionsRecyclerAdapter?{
         apiServicePROD.getDished().enqueue(object : retrofit2.Callback<DishCathegory> {
             override fun onFailure(call: Call<DishCathegory>, t: Throwable) {
                 Log.d("TAG_TAG", "Failed :" + t.message)
@@ -21,8 +24,15 @@ class MainMenuViewModel: ViewModel()  {
 
             override fun onResponse(call: Call<DishCathegory>, response: Response<DishCathegory>) {
                 categories = response.body()?.data
+                insertDishes()
+                gotData.value = true
             }
         })
+        if(gotData.value == true) {
+            return PositionsRecyclerAdapter(positionArr, categoryNames)
+        }
+        return null
+
     }
     fun insertDishes(){
         //формируем массив блюд с указанными для них категориями
@@ -39,7 +49,5 @@ class MainMenuViewModel: ViewModel()  {
                 currentDish?.dishId = j
             }
         }
-
-
     }
 }

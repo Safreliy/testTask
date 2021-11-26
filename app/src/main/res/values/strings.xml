@@ -23,4 +23,8 @@
     <string name="card">Корзина</string>
     <string name="orders">Заказы</string>
     <string name="profile">Профиль</string>
+
+    <string name="your_address">Ваш адрес</string>
+    <string name="dev_address">Краснопролетарская улица, 8с1</string>
+    <string name="order_time">Время доставки до 30 минут</string>
 </resources>
