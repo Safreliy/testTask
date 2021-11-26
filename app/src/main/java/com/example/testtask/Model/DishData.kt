@@ -20,16 +20,18 @@ data class Position (
 data class DishData(
     @Expose
     @SerializedName("id")
-    var id: Int,
+    var id: Int? = null,
     @Expose
     @SerializedName("name")
-    var name: String,
+    var name: String? = null,
     @Expose
     @SerializedName("tint")
-    var tint: String,
+    var tint: String? = null,
     @Expose
     @SerializedName("position")
-    var positions: List<Position>? = null
+    var positions: List<Position>? = null,
+
+    var category: String? = null
 )
 data class DishCathegory(
     @Expose
