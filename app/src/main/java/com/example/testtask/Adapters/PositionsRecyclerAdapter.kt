@@ -16,7 +16,7 @@ import com.example.testtask.Model.Position
 import java.net.URL
 
 
-class CustomRecyclerAdapter(private val dishes: List<DishCathegory>) ://как-то с категориями разобраться
+class CustomRecyclerAdapter(private val dishes: Array<Position>, private val categories: Array<String>) ://как-то с категориями разобраться
     RecyclerView.Adapter<CustomRecyclerAdapter.ViewHolder>() {
 
 
@@ -25,6 +25,7 @@ class CustomRecyclerAdapter(private val dishes: List<DishCathegory>) ://как-�
         var cost: TextView = view.findViewById(R.id.cost)
         var image: ImageView = view.findViewById(R.id.dishImage)
         var background: LinearLayout = view.findViewById(R.id.dishBackground)
+        var categoryName: TextView = view.findViewById(R.id.categoryName)
         init {
             // Define click listener for the ViewHolder's View.
             //textView = view.findViewById(R.id.textView)
@@ -38,11 +39,18 @@ class CustomRecyclerAdapter(private val dishes: List<DishCathegory>) ://как-�
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        val urlImg: URL = URL(dishes[position].image)
+        if(dishes[position].dishId == 0){
+            viewHolder.categoryName.visibility = View.VISIBLE;
+            viewHolder.categoryName.text = categories[dishes[position].category ?: 0];
+        }
+        else{
+            viewHolder.categoryName.visibility = View.GONE;
+        }
+        val urlImg = URL(dishes[position].image)
         val bmpImg = BitmapFactory.decodeStream(urlImg.openConnection().getInputStream())
         viewHolder.image.setImageBitmap(bmpImg)
 
-        val urlBckg: URL = URL(dishes[position].image)
+        val urlBckg = URL(dishes[position].image)
         val bmpBckg = BitmapFactory.decodeStream(urlBckg.openConnection().getInputStream())
         viewHolder.image.setImageBitmap(bmpBckg)
 
@@ -51,6 +59,4 @@ class CustomRecyclerAdapter(private val dishes: List<DishCathegory>) ://как-�
     }
 
     override fun getItemCount() = dishes.size
-
-
 }

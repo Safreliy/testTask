@@ -15,7 +15,10 @@ data class Position (
     var image: String,
     @Expose
     @SerializedName("background")
-    var background: String
+    var background: String,
+
+    var category: Int? = null,
+    var dishId: Int? = null
 )
 data class DishData(
     @Expose
@@ -30,8 +33,6 @@ data class DishData(
     @Expose
     @SerializedName("position")
     var positions: List<Position>? = null,
-
-    var category: String? = null
 )
 data class DishCathegory(
     @Expose
