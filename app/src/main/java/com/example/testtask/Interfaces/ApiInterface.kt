@@ -13,7 +13,7 @@ import retrofit2.http.Url
 
 interface ApiInterface {
 
-    @GET("menu/list")
+    @GET("menu/list?orgId=a4546f68-2059-46d4-833c-2d101548731c")
     fun getDished() : Call<DishCathegory>
 
     @POST("phone/check")

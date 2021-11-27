@@ -23,7 +23,7 @@ class MainMenuViewModel: ViewModel()  {
             }
 
             override fun onResponse(call: Call<DishCathegory>, response: Response<DishCathegory>) {
-                categories = response.body()?.data
+                categories = response.body()?.data?.menu
                 insertDishes()
                 gotData.value = true
             }

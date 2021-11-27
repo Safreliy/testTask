@@ -23,7 +23,7 @@ data class Position (
 data class DishData(
     @Expose
     @SerializedName("id")
-    var id: Int? = null,
+    var id: String? = null,
     @Expose
     @SerializedName("name")
     var name: String? = null,
@@ -36,7 +36,13 @@ data class DishData(
 )
 data class DishCathegory(
     @Expose
-    @SerializedName("data") var data:List<DishData>,
+    @SerializedName("data") var data:menuWrapper,
     @Expose
     @SerializedName("success") var success:Boolean?
+)
+
+data class menuWrapper(
+    @Expose
+    @SerializedName("menu")
+    var menu: List<DishData>
 )
