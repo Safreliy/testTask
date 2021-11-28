@@ -31,7 +31,7 @@ data class DishData(
     @SerializedName("tint")
     var tint: String? = null,
     @Expose
-    @SerializedName("position")
+    @SerializedName("positions")
     var positions: List<Position>? = null,
 )
 data class DishCathegory(

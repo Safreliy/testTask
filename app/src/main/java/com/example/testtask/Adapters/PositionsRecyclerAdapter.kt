@@ -11,9 +11,13 @@ import com.example.testtask.R
 import android.graphics.BitmapFactory
 
 import android.graphics.Bitmap
+import android.os.Looper
 import android.widget.LinearLayout
 import com.example.testtask.Model.Position
+import java.io.InputStream
 import java.net.URL
+import java.util.concurrent.Executors
+import java.util.logging.Handler
 
 
 class PositionsRecyclerAdapter(private val dishes: Array<Position?>?, private val categories: Array<String>?) ://как-то с категориями разобраться
@@ -24,7 +28,7 @@ class PositionsRecyclerAdapter(private val dishes: Array<Position?>?, private va
         var dishName: TextView = view.findViewById(R.id.dishName)
         var cost: TextView = view.findViewById(R.id.cost)
         var image: ImageView = view.findViewById(R.id.dishImage)
-        var background: LinearLayout = view.findViewById(R.id.dishBackground)
+        var background: ImageView = view.findViewById(R.id.imageView)
         var categoryName: TextView = view.findViewById(R.id.categoryName)
         init {
             // Define click listener for the ViewHolder's View.
@@ -46,14 +50,21 @@ class PositionsRecyclerAdapter(private val dishes: Array<Position?>?, private va
         else{
             viewHolder.categoryName.visibility = View.GONE;
         }
-        val urlImg = URL(dishes?.get(position)?.image)
-        val bmpImg = BitmapFactory.decodeStream(urlImg.openConnection().getInputStream())
-        viewHolder.image.setImageBitmap(bmpImg)
+        val executor = Executors.newSingleThreadExecutor()
+        val handler = android.os.Handler(Looper.getMainLooper())
+        executor.execute {
+            val urlImg = URL(dishes?.get(position)?.image)
+            val bmpImg = BitmapFactory.decodeStream(urlImg.content as InputStream)
 
-        val urlBckg = URL(dishes?.get(position)?.image)
-        val bmpBckg = BitmapFactory.decodeStream(urlBckg.openConnection().getInputStream())
-        viewHolder.image.setImageBitmap(bmpBckg)
 
+            val urlBckg = URL(dishes?.get(position)?.background)
+            val bmpBckg = BitmapFactory.decodeStream(urlBckg.openConnection().getInputStream())
+
+            handler.post {
+                viewHolder.image.setImageBitmap(bmpImg)
+                viewHolder.background.setImageBitmap(bmpBckg)
+            }
+        }
         viewHolder.dishName.text = dishes?.get(position)?.name
         viewHolder.cost.text = dishes?.get(position)?.cost.toString()
     }

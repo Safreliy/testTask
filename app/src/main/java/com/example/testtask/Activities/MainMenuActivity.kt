@@ -17,10 +17,10 @@ class MainMenuActivity : AppCompatActivity() {
         setContentView(R.layout.main_menu)
 
         val recyclerViewMenu = findViewById<RecyclerView>(R.id.recyclerViewMenu)
-        val adapter = model.getDishes()
+        model.getDishes()
         val gotData = androidx.lifecycle.Observer<Boolean>{ check:Boolean ->
             if(check){
-                recyclerViewMenu.adapter = adapter
+                recyclerViewMenu.adapter = model.getAdapter()
                 recyclerViewMenu.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false)
             }
         }
