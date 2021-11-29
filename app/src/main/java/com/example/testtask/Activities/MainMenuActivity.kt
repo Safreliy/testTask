@@ -20,7 +20,7 @@ class MainMenuActivity : AppCompatActivity() {
         model.getDishes()
         val gotData = androidx.lifecycle.Observer<Boolean>{ check:Boolean ->
             if(check){
-                recyclerViewMenu.adapter = model.getAdapter()
+                recyclerViewMenu.adapter = model.getAdapter(this)
                 recyclerViewMenu.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false)
             }
         }

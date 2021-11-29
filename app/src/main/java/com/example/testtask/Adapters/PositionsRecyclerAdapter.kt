@@ -1,5 +1,7 @@
 package com.example.testtask.Adapters
 
+import android.content.Context
+import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +13,7 @@ import com.example.testtask.R
 import android.graphics.BitmapFactory
 
 import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.os.Looper
 import android.widget.LinearLayout
 import com.example.testtask.Model.Position
@@ -18,9 +21,10 @@ import java.io.InputStream
 import java.net.URL
 import java.util.concurrent.Executors
 import java.util.logging.Handler
+import kotlin.coroutines.coroutineContext
 
 
-class PositionsRecyclerAdapter(private val dishes: Array<Position?>?, private val categories: Array<String>?) ://как-то с категориями разобраться
+class PositionsRecyclerAdapter(private val dishes: MutableList<Position?>?, private val categories: Array<String>?, private val context:Context) ://как-то с категориями разобраться
     RecyclerView.Adapter<PositionsRecyclerAdapter.ViewHolder>() {
 
 
@@ -28,7 +32,7 @@ class PositionsRecyclerAdapter(private val dishes: Array<Position?>?, private va
         var dishName: TextView = view.findViewById(R.id.dishName)
         var cost: TextView = view.findViewById(R.id.cost)
         var image: ImageView = view.findViewById(R.id.dishImage)
-        var background: ImageView = view.findViewById(R.id.imageView)
+        var background: LinearLayout = view.findViewById(R.id.dishBackground)
         var categoryName: TextView = view.findViewById(R.id.categoryName)
         init {
             // Define click listener for the ViewHolder's View.
@@ -52,6 +56,7 @@ class PositionsRecyclerAdapter(private val dishes: Array<Position?>?, private va
         }
         val executor = Executors.newSingleThreadExecutor()
         val handler = android.os.Handler(Looper.getMainLooper())
+
         executor.execute {
             val urlImg = URL(dishes?.get(position)?.image)
             val bmpImg = BitmapFactory.decodeStream(urlImg.content as InputStream)
@@ -62,7 +67,7 @@ class PositionsRecyclerAdapter(private val dishes: Array<Position?>?, private va
 
             handler.post {
                 viewHolder.image.setImageBitmap(bmpImg)
-                viewHolder.background.setImageBitmap(bmpBckg)
+                viewHolder.background.background = BitmapDrawable(context.resources, bmpBckg)
             }
         }
         viewHolder.dishName.text = dishes?.get(position)?.name

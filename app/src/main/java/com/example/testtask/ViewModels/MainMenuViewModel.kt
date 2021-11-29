@@ -1,5 +1,6 @@
 package com.example.testtask.ViewModels
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,11 +14,11 @@ class MainMenuViewModel: ViewModel()  {
     private val apiServicePROD: ApiInterface = ApiInterface.create(VMGeneralData.PROD_URL)
     private var categories: List<DishData>? = null
     private var categoryNames: Array<String>? = null
-    private var positionArr: Array<Position?> = arrayOfNulls(1000)
+    private var positionArr: MutableList<Position?> = mutableListOf()
     var gotData: MutableLiveData<Boolean> = MutableLiveData(false)
 
-    fun getAdapter() : PositionsRecyclerAdapter{
-        return PositionsRecyclerAdapter(positionArr, categoryNames)
+    fun getAdapter(context: Context) : PositionsRecyclerAdapter{
+        return PositionsRecyclerAdapter(positionArr, categoryNames,context)
     }
     fun getDishes() {
         apiServicePROD.getDished().enqueue(object : retrofit2.Callback<DishCathegory> {
@@ -45,7 +46,8 @@ class MainMenuViewModel: ViewModel()  {
                 var currentDish = currentCategory?.get(j)
                 currentDish?.category = i
                 currentDish?.dishId = j
-                positionArr[j + i*(currentCategory?.size?: 0)] = currentDish
+                //positionArr[j + i*(currentCategory?.size?: 0)] = currentDish
+                positionArr.add(currentDish)
             }
         }
     }
